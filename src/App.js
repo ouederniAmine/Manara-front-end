@@ -1,80 +1,36 @@
-import "./App.css";
+import React from "react";
+import App from "./sign in/App";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import dashboard from "./dashboard/index";
+import partenersConfig from "./dashboard/partnersPage/partnerConfigPage";
+import "./app.css";
+import Login from "./sign in/App";
+import Articles from "./dashboard/article page/articles";
+import claims from "./dashboard/claims page/claims";
+import advice from "./dashboard/advice page/advice";
+export default function app() {
+  let loggedIn;
+  const send = async () => {
+    const response = await fetch("/login", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-import { useEffect, useState } from "react";
-import ApiSend from "./sign in/apiSend";
-function App() {
-  let emailValue;
-  let pwdValue;
-
+    const h = response.json().then((r) => {
+      loggedIn = r.loggedIn;
+    });
+  };
   return (
-    <div id="login">
-      <h3 className="text-center text-white pt-5">Login form</h3>
-      <div className="container">
-        <div
-          id="login-row"
-          className="row justify-content-center align-items-center"
-        >
-          <div id="login-column" className="col-md-6">
-            <div id="login-box" className="col-md-12">
-              <form id="login-form" className="form" action="" method="">
-                <h3 className="text-center text-info">Login</h3>
-                <div className="form-group">
-                  <label htmlFor="username" className="text-info">
-                    Username:
-                  </label>
-                  <br></br>
-                  <input
-                    type="text"
-                    id="username"
-                    className="form-control"
-                    onChange={(event) => {
-                      emailValue = event.target.value;
-                    }}
-                  ></input>
-                </div>
-                <div className="form-group">
-                  <label htmlFor="password" className="text-info">
-                    Password:
-                  </label>
-                  <br></br>
-                  <input
-                    type="text"
-                    id="password"
-                    className="form-control"
-                    onChange={(event) => {
-                      pwdValue = event.target.value;
-                    }}
-                  ></input>
-  
-                    
-                </div>
-                <div className="form-group">
-                  <label htmlFor="remember-me" className="text-info">
-                    <span>Remember me</span> 
-                    <span>
-                      <input
-                        id="remember-me"
-                        name="remember-me"
-                        type="checkbox"
-                      ></input>
-                    </span>
-                  </label>
-                  <br></br>
+    <BrowserRouter>
+      <Route path="/login" component={App} />
+      <Route exact path="/" component={dashboard} />
 
-                  <ApiSend email={emailValue} password={pwdValue}></ApiSend>
-                </div>
-                <div id="register-link" className="text-right">
-                  <a href="#" className="text-info">
-                    Register here
-                  </a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Route path="/parteners" exact component={partenersConfig} />
+      <Route path="/articles" exact component={Articles} />
+      <Route path="/claims" exact component={claims} />
+      <Route path="/advices" exact component={advice} />
+    </BrowserRouter>
   );
 }
-
-export default App;

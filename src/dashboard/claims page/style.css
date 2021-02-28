@@ -1,0 +1,6 @@
+tr {
+  opacity: 0.9;
+}
+tr:hover {
+  opacity: 1;
+}
