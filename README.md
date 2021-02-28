@@ -1,5 +1,3 @@
 # Manara Front end 
 
-
-
-## Available Scripts
+a hackthon made in a hackthon
