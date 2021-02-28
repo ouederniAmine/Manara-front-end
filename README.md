@@ -1,3 +1,7 @@
 # Manara Front end 
 
-a hackthon made in a hackthon
+a front-end web app  made in a hackthon
+
+# technolihies : 
+ react bootstrap html css 
+  
