@@ -2,6 +2,6 @@
 
 a front-end web app  made in a hackthon
 
-# technoligies : 
+# technologies : 
  react bootstrap html css 
   
